@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/mobile_navigation"
+	app:startDestination="@+id/navigation_home">
+
+	<fragment
+		android:id="@+id/navigation_home"
+		android:name="com.garudahacks.falconnect.view.main.home.HomeFragment"
+		android:label="@string/home"
+		tools:layout="@layout/fragment_home" />
+
+	<fragment
+		android:id="@+id/navigation_education"
+		android:name="com.garudahacks.falconnect.view.main.education.EducationFragment"
+		android:label="@string/education"
+		tools:layout="@layout/fragment_education" />
+
+	<fragment
+		android:id="@+id/navigation_jobs"
+		android:name="com.garudahacks.falconnect.view.main.jobs.JobsFragment"
+		android:label="@string/jobs"
+		tools:layout="@layout/fragment_jobs" />
+
+	<fragment
+		android:id="@+id/navigation_community"
+		android:name="com.garudahacks.falconnect.view.main.community.CommunityFragment"
+		android:label="@string/community"
+		tools:layout="@layout/fragment_community" />
+
+	<fragment
+		android:id="@+id/navigation_consult"
+		android:name="com.garudahacks.falconnect.view.main.consult.ConsultFragment"
+		android:label="@string/consult"
+		tools:layout="@layout/fragment_consult" />
+
+</navigation>

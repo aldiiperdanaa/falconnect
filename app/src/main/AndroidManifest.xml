@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Falconnect"
         tools:targetApi="31">
         <activity
+            android:name=".view.main.community.ShareActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.signup.AccountSetupActivity"
             android:exported="false" />
         <activity
