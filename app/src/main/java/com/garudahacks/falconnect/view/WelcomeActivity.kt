@@ -6,14 +6,13 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsetsController
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.garudahacks.falconnect.R
 import com.garudahacks.falconnect.databinding.ActivityWelcomeBinding
 import com.garudahacks.falconnect.view.login.LoginActivity
-import com.garudahacks.falconnect.view.register.RegisterActivity
+import com.garudahacks.falconnect.view.signup.SignupActivity
 
 class WelcomeActivity : BaseActivity() {
 
@@ -34,7 +33,7 @@ class WelcomeActivity : BaseActivity() {
         }
 
         binding.btnRegister.setOnClickListener {
-            val registerIntent = Intent(this, RegisterActivity::class.java)
+            val registerIntent = Intent(this, SignupActivity::class.java)
             startActivity(registerIntent)
         }
 

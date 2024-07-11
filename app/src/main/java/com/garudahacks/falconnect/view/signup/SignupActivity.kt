@@ -1,4 +1,4 @@
-package com.garudahacks.falconnect.view.register
+package com.garudahacks.falconnect.view.signup
 
 import android.content.Intent
 import android.content.res.ColorStateList
@@ -8,32 +8,30 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.WindowInsetsController
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.garudahacks.falconnect.R
-import com.garudahacks.falconnect.databinding.ActivityRegisterBinding
+import com.garudahacks.falconnect.databinding.ActivitySignupBinding
 import com.garudahacks.falconnect.view.BaseActivity
 import com.garudahacks.falconnect.view.login.LoginActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
-class RegisterActivity : BaseActivity() {
+class SignupActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityRegisterBinding
+    private lateinit var binding: ActivitySignupBinding
     private val db by lazy { FirebaseFirestore.getInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setNavigationBarColor()
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.register) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.signup) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -43,7 +41,7 @@ class RegisterActivity : BaseActivity() {
             finish()
         }
 
-        binding.btnRegister.setOnClickListener {
+        binding.btnSignup.setOnClickListener {
             if (isRequired()) checkIdentification()
         }
 
@@ -53,23 +51,23 @@ class RegisterActivity : BaseActivity() {
         }
 
         binding.etIdentification.addTextChangedListener(textWatcher)
-        updateRegisterButtonState()
+        updateSignupButtonState()
     }
 
     private fun progress(progress: Boolean) {
-        binding.alertRegister.visibility = View.GONE
+        binding.alertSignup.visibility = View.GONE
         when (progress) {
             true -> {
-                binding.btnRegister.text = getString(R.string.loading)
+                binding.btnSignup.text = getString(R.string.loading)
                 val disabledColor = resources.getColor(R.color.primary200, null)
-                binding.btnRegister.backgroundTintList = ColorStateList.valueOf(disabledColor)
-                binding.btnRegister.isEnabled = false
+                binding.btnSignup.backgroundTintList = ColorStateList.valueOf(disabledColor)
+                binding.btnSignup.isEnabled = false
             }
             false -> {
-                binding.btnRegister.text = getString(R.string.next)
+                binding.btnSignup.text = getString(R.string.next)
                 val enabledColor = resources.getColor(R.color.primary400, null)
-                binding.btnRegister.backgroundTintList = ColorStateList.valueOf(enabledColor)
-                binding.btnRegister.isEnabled = true
+                binding.btnSignup.backgroundTintList = ColorStateList.valueOf(enabledColor)
+                binding.btnSignup.isEnabled = true
             }
         }
     }
@@ -91,27 +89,27 @@ class RegisterActivity : BaseActivity() {
                     intent.putExtra("identification", identification)
                     startActivity(intent)
                 }
-                else binding.alertRegister.visibility = View.VISIBLE
+                else binding.alertSignup.visibility = View.VISIBLE
             }
     }
 
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            updateRegisterButtonState()
+            updateSignupButtonState()
         }
         override fun afterTextChanged(s: Editable?) {}
     }
 
-    private fun updateRegisterButtonState() {
+    private fun updateSignupButtonState() {
         val isEnabled = isRequired()
-        binding.btnRegister.isEnabled = isEnabled
+        binding.btnSignup.isEnabled = isEnabled
         val backgroundColor = if (isEnabled) {
             resources.getColor(R.color.primary400, null)
         } else {
             resources.getColor(R.color.primary200, null)
         }
-        binding.btnRegister.backgroundTintList = ColorStateList.valueOf(backgroundColor)
+        binding.btnSignup.backgroundTintList = ColorStateList.valueOf(backgroundColor)
     }
 
     private fun setNavigationBarColor() {

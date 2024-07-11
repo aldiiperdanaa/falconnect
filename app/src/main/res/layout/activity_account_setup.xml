@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="@color/backgroundSecondary"
-    tools:context=".view.register.AccountSetupActivity">
+    tools:context=".view.signup.AccountSetupActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,8 +63,8 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:id="@+id/register_heading"
-                    style="@style/Heading4"
+                    android:id="@+id/signup_heading"
+                    style="@style/Heading3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Complete\nyour Account Details"
@@ -73,16 +73,16 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/register_subheading"
+                    android:id="@+id/signup_subheading"
                     style="@style/TextBase_Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="One step away! You will be logged in with National Indentification Number: $nik"
+                    android:text="One step away! You will be logged in with $nik"
                     android:textColor="@color/textSecondary"
                     android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/register_heading" />
+                    app:layout_constraintTop_toBottomOf="@+id/signup_heading" />
 
                 <TextView
                     android:id="@+id/account_information"
@@ -93,7 +93,7 @@
                     android:layout_marginTop="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/register_subheading" />
+                    app:layout_constraintTop_toBottomOf="@+id/signup_subheading" />
 
                 <EditText
                     android:id="@+id/et_fullname"
@@ -114,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:inputType="date"
+                    android:inputType="none"
                     android:hint="Date of Birth"
                     android:textColorHint="@color/textSecondary"
                     android:drawableStart="@drawable/ic_calendar"
@@ -140,7 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:inputType="number"
+                    android:inputType="textEmailAddress"
                     android:hint="Email Address (Optional)"
                     android:textColorHint="@color/textSecondary"
                     android:drawableStart="@drawable/ic_mail"
@@ -249,7 +249,7 @@
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <android.widget.Button
-                    android:id="@+id/btn_register"
+                    android:id="@+id/btn_signup"
                     style="@style/TextBase_SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"

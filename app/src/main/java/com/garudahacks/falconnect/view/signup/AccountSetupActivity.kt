@@ -1,5 +1,6 @@
-package com.garudahacks.falconnect.view.register
+package com.garudahacks.falconnect.view.signup
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Typeface
@@ -30,6 +31,7 @@ import com.garudahacks.falconnect.view.login.LoginActivity
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 
 class AccountSetupActivity : BaseActivity() {
@@ -66,7 +68,7 @@ class AccountSetupActivity : BaseActivity() {
             togglePasswordVisibility(binding.etPasswordConfirmation, it as ImageButton)
         }
 
-        binding.btnRegister.setOnClickListener {
+        binding.btnSignup.setOnClickListener {
             if (isRequired()) addUser()
         }
 
@@ -76,22 +78,46 @@ class AccountSetupActivity : BaseActivity() {
         binding.etPassword.addTextChangedListener(textWatcher)
         binding.etPasswordConfirmation.addTextChangedListener(textWatcher)
         updateRegisterButtonState()
+
+        // Tambahkan click listener untuk DatePicker
+        binding.etDate.setOnClickListener {
+            showDatePickerDialog(binding.etDate)
+        }
+    }
+
+    private fun showDatePickerDialog(etDate: EditText) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, selectedYear, selectedMonth, selectedDay ->
+                calendar.set(selectedYear, selectedMonth, selectedDay)
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                etDate.setText(dateFormat.format(calendar.time))
+            },
+            year, month, day
+        )
+
+        datePickerDialog.show()
     }
 
     private fun progress(progress: Boolean) {
         binding.alertPassword.visibility = View.GONE
         when (progress) {
             true -> {
-                binding.btnRegister.text = getString(R.string.loading)
+                binding.btnSignup.text = getString(R.string.loading)
                 val disabledColor = resources.getColor(R.color.primary200, null)
-                binding.btnRegister.backgroundTintList = ColorStateList.valueOf(disabledColor)
-                binding.btnRegister.isEnabled = false
+                binding.btnSignup.backgroundTintList = ColorStateList.valueOf(disabledColor)
+                binding.btnSignup.isEnabled = false
             }
             false -> {
-                binding.btnRegister.text = getString(R.string.sign_up)
+                binding.btnSignup.text = getString(R.string.sign_up)
                 val enabledColor = resources.getColor(R.color.primary400, null)
-                binding.btnRegister.backgroundTintList = ColorStateList.valueOf(enabledColor)
-                binding.btnRegister.isEnabled = true
+                binding.btnSignup.backgroundTintList = ColorStateList.valueOf(enabledColor)
+                binding.btnSignup.isEnabled = true
             }
         }
     }
@@ -184,17 +210,17 @@ class AccountSetupActivity : BaseActivity() {
 
     private fun updateRegisterButtonState() {
         val isEnabled = isRequired()
-        binding.btnRegister.isEnabled = isEnabled
+        binding.btnSignup.isEnabled = isEnabled
         val backgroundColor = if (isEnabled) {
             resources.getColor(R.color.primary500, null)
         } else {
             resources.getColor(R.color.primary200, null)
         }
-        binding.btnRegister.backgroundTintList = ColorStateList.valueOf(backgroundColor)
+        binding.btnSignup.backgroundTintList = ColorStateList.valueOf(backgroundColor)
     }
 
     private fun setStyledSubheading(identification: String) {
-        val fullText = "One step away! You will be logged in with National Indentification Number: $identification"
+        val fullText = "One step away! You will be logged in with $identification"
         val spannableString = SpannableString(fullText)
         val start = fullText.indexOf(identification)
         val end = start + identification.length
@@ -203,7 +229,7 @@ class AccountSetupActivity : BaseActivity() {
         spannableString.setSpan(ForegroundColorSpan(color), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannableString.setSpan(StyleSpan(Typeface.BOLD), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-        binding.registerSubheading.text = spannableString
+        binding.signupSubheading.text = spannableString
     }
 
     private fun setNavigationBarColor() {

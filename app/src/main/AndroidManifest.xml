@@ -13,13 +13,13 @@
         android:theme="@style/Theme.Falconnect"
         tools:targetApi="31">
         <activity
-            android:name=".view.register.AccountSetupActivity"
+            android:name=".view.signup.AccountSetupActivity"
             android:exported="false" />
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.register.RegisterActivity"
+            android:name=".view.signup.SignupActivity"
             android:exported="false" />
         <activity
             android:name=".view.WelcomeActivity"
@@ -28,10 +28,10 @@
             android:name=".view.BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".view.LaunchActivity"
+            android:name=".view.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.MainActivity"
+            android:name=".view.LaunchActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
