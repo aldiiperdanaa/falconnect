@@ -26,7 +26,8 @@
             android:exported="false" />
         <activity
             android:name=".view.WelcomeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTask" />
         <activity
             android:name=".view.BaseActivity"
             android:exported="false" />

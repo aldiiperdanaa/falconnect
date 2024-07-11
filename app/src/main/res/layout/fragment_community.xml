@@ -222,10 +222,10 @@
                         android:textAllCaps="false"
                         android:letterSpacing="0"
                         android:outlineProvider="none"
-                        android:text="Semua"
+                        android:text="All"
                         android:textColor="@color/backgroundSecondary"
                         android:backgroundTint="@color/primary500"
-                        app:cornerRadius="10dp"
+                        app:cornerRadius="100dp"
                         android:layout_marginEnd="8dp"/>
 
                     <com.google.android.material.button.MaterialButton
@@ -240,10 +240,10 @@
                         android:textAllCaps="false"
                         android:letterSpacing="0"
                         android:outlineProvider="none"
-                        android:text="Umum"
+                        android:text="General"
                         android:textColor="@color/textSecondary"
                         android:backgroundTint="@color/fillQuaternary"
-                        app:cornerRadius="10dp"
+                        app:cornerRadius="100dp"
                         android:layout_marginEnd="8dp"/>
 
                     <com.google.android.material.button.MaterialButton
@@ -258,10 +258,10 @@
                         android:textAllCaps="false"
                         android:letterSpacing="0"
                         android:outlineProvider="none"
-                        android:text="Kegiatan"
+                        android:text="Activity"
                         android:textColor="@color/textSecondary"
                         android:backgroundTint="@color/fillQuaternary"
-                        app:cornerRadius="10dp"
+                        app:cornerRadius="100dp"
                         android:layout_marginEnd="8dp"/>
 
                     <com.google.android.material.button.MaterialButton
@@ -276,10 +276,10 @@
                         android:textAllCaps="false"
                         android:letterSpacing="0"
                         android:outlineProvider="none"
-                        android:text="Informasi"
+                        android:text="Information"
                         android:textColor="@color/textSecondary"
                         android:backgroundTint="@color/fillQuaternary"
-                        app:cornerRadius="10dp"
+                        app:cornerRadius="100dp"
                         android:layout_marginEnd="8dp"/>
 
                     <com.google.android.material.button.MaterialButton
@@ -294,10 +294,10 @@
                         android:textAllCaps="false"
                         android:letterSpacing="0"
                         android:outlineProvider="none"
-                        android:text="Tips &amp; Trik"
+                        android:text="Tips &amp; Trick"
                         android:textColor="@color/textSecondary"
                         android:backgroundTint="@color/fillQuaternary"
-                        app:cornerRadius="10dp"/>
+                        app:cornerRadius="100dp"/>
 
                 </LinearLayout>
 

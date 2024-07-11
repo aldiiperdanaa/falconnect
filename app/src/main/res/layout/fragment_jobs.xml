@@ -1,14 +1,346 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/jobs"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.main.jobs.JobsFragment">
+    android:background="@color/backgroundSecondary"
+    tools:context=".view.main.jobs.JobsFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <View
+        android:id="@+id/status_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="24dp"
+        android:background="@color/primary500"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-</FrameLayout>
+    <!-- Navbar -->
+    <LinearLayout
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="14dp"
+        android:paddingBottom="34dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="9dp"
+        android:background="@color/primary500"
+        tools:layout_marginTop="-24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_bar">
+
+        <TextView
+            style="@style/TextExtraLarge_SemiBold"
+            android:id="@+id/title_navbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/white"
+            android:text="Falconnect Jobs"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <ImageButton
+                android:id="@+id/btn_preference"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:padding="7dp"
+                android:src="@drawable/ic_preference"
+                android:background="@drawable/btn_circle"
+                app:tint="@color/white"
+
+                android:layout_marginEnd="6dp"/>
+
+            <ImageButton
+                android:id="@+id/btn_bookmark"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:padding="7dp"
+                android:src="@drawable/ic_bookmark"
+                android:background="@drawable/btn_circle"
+                app:tint="@color/white"/>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/search_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_circle"
+        android:backgroundTint="@color/backgroundPrimary"
+        android:paddingHorizontal="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="-22dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/navbar">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_search"
+            app:tint="@color/textSecondary"
+            android:layout_marginEnd="10dp"/>
+
+        <EditText
+            android:id="@+id/search_trash_bank"
+            style="@style/SearchEditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="What job are you looking for?"
+            android:textColor="@color/textTertiary"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="24dp"
+                android:background="@drawable/btn_circle"
+                android:backgroundTint="@color/fillPrimary"
+                android:layout_marginHorizontal="4dp"/>
+
+            <ImageButton
+                android:id="@+id/btn_barcode"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:padding="7dp"
+                android:src="@drawable/ic_barcode"
+                android:background="@drawable/btn_circle"
+                android:backgroundTint="@color/backgroundPrimary"
+                app:tint="@color/primary500"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="22dp">
+
+            <HorizontalScrollView
+                android:id="@+id/filter_community"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/TextSmall_SemiBold"
+                        android:id="@+id/btn_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="7dp"
+                        android:textAllCaps="false"
+                        android:letterSpacing="0"
+                        android:outlineProvider="none"
+                        android:text="All Jobs"
+                        android:textColor="@color/backgroundSecondary"
+                        android:backgroundTint="@color/primary500"
+                        app:cornerRadius="100dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/TextSmall_Regular"
+                        android:id="@+id/btn_full_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="7dp"
+                        android:textAllCaps="false"
+                        android:letterSpacing="0"
+                        android:outlineProvider="none"
+                        android:text="Full-Time"
+                        android:textColor="@color/textSecondary"
+                        android:backgroundTint="@color/fillQuaternary"
+                        app:cornerRadius="100dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/TextSmall_Regular"
+                        android:id="@+id/btn_part_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="7dp"
+                        android:textAllCaps="false"
+                        android:letterSpacing="0"
+                        android:outlineProvider="none"
+                        android:text="Part-Time"
+                        android:textColor="@color/textSecondary"
+                        android:backgroundTint="@color/fillQuaternary"
+                        app:cornerRadius="100dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/TextSmall_Regular"
+                        android:id="@+id/btn_contract"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="7dp"
+                        android:textAllCaps="false"
+                        android:letterSpacing="0"
+                        android:outlineProvider="none"
+                        android:text="Contract"
+                        android:textColor="@color/textSecondary"
+                        android:backgroundTint="@color/fillQuaternary"
+                        app:cornerRadius="100dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/TextSmall_Regular"
+                        android:id="@+id/btn_intern"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="7dp"
+                        android:textAllCaps="false"
+                        android:letterSpacing="0"
+                        android:outlineProvider="none"
+                        android:text="Internship"
+                        android:textColor="@color/textSecondary"
+                        android:backgroundTint="@color/fillQuaternary"
+                        app:cornerRadius="100dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/TextSmall_Regular"
+                        android:id="@+id/btn_remote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="7dp"
+                        android:textAllCaps="false"
+                        android:letterSpacing="0"
+                        android:outlineProvider="none"
+                        android:text="Remote"
+                        android:textColor="@color/textSecondary"
+                        android:backgroundTint="@color/fillQuaternary"
+                        app:cornerRadius="100dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/TextSmall_Regular"
+                        android:id="@+id/btn_entry_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="7dp"
+                        android:textAllCaps="false"
+                        android:letterSpacing="0"
+                        android:outlineProvider="none"
+                        android:text="Entry-Level"
+                        android:textColor="@color/textSecondary"
+                        android:backgroundTint="@color/fillQuaternary"
+                        app:cornerRadius="100dp"/>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="209dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_community"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/adapter_jobs"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="16dp"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:indeterminateTint="@color/primary500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary500"
+        android:src="@drawable/ic_user_plus"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="140dp"
+        tools:layout_marginBottom="20dp"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:fabCustomSize="56dp"
+        app:maxImageSize="24dp"
+        app:rippleColor="#26000000"
+        app:tint="@color/backgroundPrimary"
+        app:shapeAppearance="?attr/shapeAppearanceOverlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
