@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/welcome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/backgroundSecondary"
+    tools:context=".view.WelcomeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/hero_onboarding"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/img_placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/welcome_heading"
+                style="@style/Heading4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome to Falconnect"
+                android:textAlignment="center"
+                android:textColor="@color/textPrimary"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hero_onboarding"/>
+
+            <TextView
+                style="@style/TextBase_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Connecting Lives, Building Futures"
+                android:textAlignment="center"
+                android:textColor="@color/textSecondary"
+                android:paddingHorizontal="16dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/welcome_heading" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <android.widget.Button
+                android:id="@+id/btn_register"
+                style="@style/TextBase_SemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_rounded"
+                android:textColor="@color/backgroundSecondary"
+                android:outlineProvider="none"
+                android:text="Sign Up for Free"
+                android:textAllCaps="false"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_login"/>
+
+            <android.widget.Button
+                android:id="@+id/btn_login"
+                style="@style/TextBase_SemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_rounded"
+                android:backgroundTint="@color/backgroundSecondary"
+                android:outlineProvider="none"
+                android:text="Log In"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

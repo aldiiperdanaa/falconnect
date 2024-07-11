@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.garudahacks.falconnect" />
+                  <option name="mobileSdkAppId" value="1:749117529694:android:c695f580a6b4da2c5a9ecf" />
+                  <option name="projectId" value="falconnect-75c56" />
+                  <option name="projectNumber" value="749117529694" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

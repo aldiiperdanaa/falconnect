@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "749117529694",
+    "project_id": "falconnect-75c56",
+    "storage_bucket": "falconnect-75c56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749117529694:android:c695f580a6b4da2c5a9ecf",
+        "android_client_info": {
+          "package_name": "com.garudahacks.falconnect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFhj_6vZOTJx8Ij-x8ZeZomE3ck1kXE1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

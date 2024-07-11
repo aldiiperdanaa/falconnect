@@ -157,4 +157,16 @@
         <item name="android:lineHeight">16sp</item>
     </style>
 
+    <!-- EDIT TEXT STYLE -->
+    <style name="InputEditTextStyle">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineHeight">24sp</item>
+        <item name="android:background">@drawable/et_rounded_border_selector</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:textCursorDrawable">@drawable/caret_color</item>
+    </style>
+
 </resources>

@@ -41,4 +41,8 @@
     <color name="secondary800">#FFB27D18</color>
     <color name="secondary900">#FF996B14</color>
 
+    <!-- Other Colors -->
+    <color name="separator_no_transparency">#FFC6C6C8</color>
+    <color name="negative_color">#FFEE0303</color>
+
 </resources>
