@@ -26,6 +26,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.garudahacks.falconnect.R
 import com.garudahacks.falconnect.databinding.ActivityAccountSetupBinding
+import com.garudahacks.falconnect.databinding.ItemBottomSheetSecondChanceBinding
 import com.garudahacks.falconnect.model.User
 import com.garudahacks.falconnect.view.BaseActivity
 import com.garudahacks.falconnect.view.login.LoginActivity
@@ -40,6 +41,7 @@ import java.util.Locale
 class AccountSetupActivity : BaseActivity() {
 
     private lateinit var binding: ActivityAccountSetupBinding
+    private lateinit var bindingBottomSheetDialog: ItemBottomSheetSecondChanceBinding
     private val db by lazy { FirebaseFirestore.getInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +49,7 @@ class AccountSetupActivity : BaseActivity() {
         enableEdgeToEdge()
 
         binding = ActivityAccountSetupBinding.inflate(layoutInflater)
+        bindingBottomSheetDialog = ItemBottomSheetSecondChanceBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setNavigationBarColor()
 
@@ -115,7 +118,9 @@ class AccountSetupActivity : BaseActivity() {
                     val fullname = document.getString("fullname")
                     val date = document.getTimestamp("date")
 
+
                     binding.etFullname.setText(fullname)
+                    bindingBottomSheetDialog.helloFullname.setText("Hello ${fullname}")
                     val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                     binding.etDate.setText(dateFormat.format(date?.toDate()))
                 }
