@@ -182,6 +182,17 @@
         <item name="android:lineHeight">44sp</item>
         <item name="android:background">@drawable/bg_rectangle</item>
     </style>
+    <!-- Edit Text -->
+    <style name="EditTextStyle">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineHeight">24sp</item>
+        <item name="android:background">@drawable/btn_circle</item>
+        <item name="android:backgroundTint">@color/backgroundSecondary</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:paddingHorizontal">16dp</item>
+    </style>
 
     <!--  Bottom Sheet  -->
     <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">

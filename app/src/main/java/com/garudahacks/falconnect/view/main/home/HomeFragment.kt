@@ -1,60 +1,111 @@
 package com.garudahacks.falconnect.view.main.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.garudahacks.falconnect.R
+import com.garudahacks.falconnect.databinding.FragmentHomeBinding
+import com.garudahacks.falconnect.local.preference.PreferenceManager
+import com.garudahacks.falconnect.model.News
+import com.garudahacks.falconnect.util.PrefUtil
+import com.garudahacks.falconnect.util.SpacingItemDecoration
+import com.garudahacks.falconnect.util.TimeOfDay
+import com.garudahacks.falconnect.util.timeOfDay
+import com.garudahacks.falconnect.view.news.DetailNewsActivity
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import java.util.Date
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class HomeFragment : Fragment(), HomeNewsAdapter.AdapterListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var adapter: HomeNewsAdapter
+    private val db by lazy { Firebase.firestore }
+    private val pref by lazy { PreferenceManager(requireContext()) }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        adapter = HomeNewsAdapter(arrayListOf(), this)
+        binding.rvNews.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvNews.adapter = adapter
+
+        val spacingInPixels = 20
+        val edgeSpacingInPixels = 32
+        binding.rvNews.addItemDecoration(SpacingItemDecoration(spacingInPixels, edgeSpacingInPixels))
+
+        getNews()
+        setupTimeOfDay()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+//    private fun setupImageCarousel() {
+//        val carouselItems = listOf(
+//            R.drawable.img_placeholder,
+//            R.drawable.img_placeholder,
+//            R.drawable.img_placeholder
+//        ).map { CarouselItem(imageDrawable = it) }
+//
+//        binding.carousel.setData(carouselItems)
+//    }
+
+    private fun getNews() {
+        val news: ArrayList<News> = arrayListOf()
+        db.collection("news")
+            .limit(5)
+            .get()
+            .addOnSuccessListener { result ->
+                result.forEach { doc ->
+                    news.add(
+                        News(
+                            id = doc.reference.id,
+                            title = doc.data["title"].toString(),
+                            photoUrl = doc.data["photoUrl"].toString(),
+                        )
+                    )
                 }
+                adapter.setData(news)
             }
+    }
+
+    override fun onClick(news: News) {
+        val intent = Intent(requireContext(), DetailNewsActivity::class.java).apply {
+            putExtra("id", news.id)
+        }
+        startActivity(intent)
+    }
+
+    private fun setupTimeOfDay() {
+        val currentTimeOfDay = Date().timeOfDay()
+        val day: String
+        when (currentTimeOfDay) {
+            TimeOfDay.MORNING -> {
+                day = "Good Morning"
+            }
+            TimeOfDay.DAY -> {
+                day = "Good Day"
+            }
+            TimeOfDay.AFTERNOON -> {
+                day = "Good Evening"
+            }
+            TimeOfDay.NIGHT -> {
+                day = "Good Night"
+            }
+        }
+
+        binding.greeting.text = day
+
+        val fullname = pref.getString(PrefUtil.pref_fullname)
+        binding.fullname.text = fullname
     }
 }
