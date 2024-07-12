@@ -1,14 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/education"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.main.education.EducationFragment">
+    android:background="@color/backgroundSecondary"
+    tools:context=".view.main.education.EducationFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <View
+        android:id="@+id/status_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="24dp"
+        android:background="@color/backgroundPrimary"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-</FrameLayout>
+    <!-- Navbar -->
+    <LinearLayout
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingVertical="14dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="9dp"
+        android:background="@color/backgroundPrimary"
+        tools:layout_marginTop="-24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_bar">
+
+        <TextView
+            style="@style/TextExtraLarge_SemiBold"
+            android:id="@+id/title_navbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"
+            android:text="@string/education"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <ImageButton
+                android:id="@+id/btn_search"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:padding="7dp"
+                android:src="@drawable/ic_search"
+                android:background="@drawable/btn_circle"
+                android:backgroundTint="@color/backgroundPrimary"
+                app:tint="@color/textSecondary"
+                android:layout_marginEnd="6dp"/>
+
+            <ImageButton
+                android:id="@+id/btn_more"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:padding="7dp"
+                android:src="@drawable/ic_more"
+                android:background="@drawable/btn_circle"
+                android:backgroundTint="@color/backgroundPrimary"
+                app:tint="@color/textSecondary"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

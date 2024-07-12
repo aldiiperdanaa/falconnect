@@ -75,9 +75,8 @@ class HomeFragment : Fragment(),
 
     private fun setupImageCarousel() {
         val carouselItems = listOf(
+            R.drawable.img_advertisement_2,
             R.drawable.img_advertisement_1,
-            R.drawable.img_advertisement_1,
-            R.drawable.img_advertisement_1
         ).map { CarouselItem(imageDrawable = it) }
 
         binding.carousel.setData(carouselItems)
