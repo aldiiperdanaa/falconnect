@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundSecondary"
+    tools:context=".view.main.profile.ProfileFragment" >
+
+    <View
+        android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:background="@color/primary500"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/bg_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_background_profile"
+        app:layout_constraintTop_toBottomOf="@+id/status_bar"/>
+
+    <!-- Navbar -->
+    <LinearLayout
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingVertical="14dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="9dp"
+        android:background="@color/primary500"
+        tools:layout_marginTop="-24dp"
+        app:layout_constraintTop_toBottomOf="@+id/status_bar">
+
+        <TextView
+            style="@style/TextExtraLarge_Medium"
+            android:id="@+id/title_navbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/white"
+            android:text="@string/profile"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <ImageButton
+                android:id="@+id/btn_more"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:padding="7dp"
+                android:src="@drawable/ic_more"
+                android:background="@drawable/btn_circle"
+                app:tint="@color/white"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/initial"
+        style="@style/Heading1"
+        android:fontFamily="@font/nunito_bold"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/bg_circle_border"
+        android:layout_marginTop="-66dp"
+        tools:text="Aa"
+        android:textColor="@color/backgroundSecondary"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bg_profile"/>
+
+    <TextView
+        android:id="@+id/fullname"
+        style="@style/Heading5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        tools:text="Aldi Perdana Asri"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/initial"/>
+
+    <TextView
+        android:id="@+id/identification"
+        style="@style/TextBase_SemiBold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="2dp"
+        android:text="777000777000777"
+        android:textColor="@color/primary500"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/fullname"/>
+
+    <LinearLayout
+        android:id="@+id/account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/btn_rectangle"
+        android:backgroundTint="@color/backgroundSecondary"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@+id/identification">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_user"
+            app:tint="@color/primary500"
+            android:layout_marginEnd="12dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="24dp">
+
+            <TextView
+                style="@style/TextBase_SemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account"/>
+
+            <TextView
+                style="@style/TextExtraSmall_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Account Information • Password • Verify Phone Number"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/textSecondary"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_caret_right"
+            app:tint="@color/textTertiary"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/btn_rectangle"
+        android:backgroundTint="@color/backgroundSecondary"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@+id/account">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_sun"
+            app:tint="@color/primary500"
+            android:layout_marginEnd="12dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="24dp">
+
+            <TextView
+                style="@style/TextBase_SemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Display"/>
+
+            <TextView
+                style="@style/TextExtraSmall_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Brightness • Dark Mode • Font Size"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/textSecondary"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_caret_right"
+            app:tint="@color/textTertiary"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/btn_rectangle"
+        android:backgroundTint="@color/backgroundSecondary"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@+id/display">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_headset"
+            app:tint="@color/primary500"
+            android:layout_marginEnd="12dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="24dp">
+
+            <TextView
+                style="@style/TextBase_SemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Services"/>
+
+            <TextView
+                style="@style/TextExtraSmall_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Complaints • Frequently Asked Questions • Additional Information"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/textSecondary"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_caret_right"
+            app:tint="@color/textTertiary"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/security"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/btn_rectangle"
+        android:backgroundTint="@color/backgroundSecondary"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@+id/service">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_shield"
+            app:tint="@color/primary500"
+            android:layout_marginEnd="12dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="24dp">
+
+            <TextView
+                style="@style/TextBase_SemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Security &amp; Policy"/>
+
+            <TextView
+                style="@style/TextExtraSmall_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Security • Privacy Policy • Terms of Service"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/textSecondary"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_caret_right"
+            app:tint="@color/textTertiary"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/btn_rectangle"
+        android:backgroundTint="@color/backgroundSecondary"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@+id/security">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_info"
+            app:tint="@color/primary500"
+            android:layout_marginEnd="12dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="24dp">
+
+            <TextView
+                style="@style/TextBase_SemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About the Application"/>
+
+            <TextView
+                style="@style/TextExtraSmall_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Description • Developer Information • Updates"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/textSecondary"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_caret_right"
+            app:tint="@color/textTertiary"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/btn_rectangle"
+        android:backgroundTint="@color/backgroundSecondary"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginBottom="120dp"
+        tools:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_logout"
+            app:tint="@color/negative_color"
+            android:layout_marginEnd="12dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="24dp">
+
+            <TextView
+                style="@style/TextBase_SemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Keluar"
+                android:textColor="@color/negative_color"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_caret_right"
+            app:tint="@color/textTertiary"/>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,37 +33,38 @@ class JobsAdapter(
         holder.binding.companyName.text = item.companyName
         holder.binding.category.text = item.category
         holder.binding.salary.text = item.salary
+        holder.binding.city.text = item.city
 
         Glide.with(holder.itemView.context)
             .load(item.companyImg)
             .placeholder(R.drawable.img_placeholder)
             .into(holder.binding.companyImg)
 
-        item.createdAt?.let { timestamp ->
-            val now = Date()
-            val date = timestamp.toDate()
-            val diff = now.time - date.time
-
-            val seconds = diff / 1000
-            val minutes = seconds / 60
-            val hours = minutes / 60
-            val days = hours / 24
-            val weeks = days / 7
-            val months = days / 30
-            val years = days / 365
-
-            val formattedDate = when {
-                years > 0 -> "$years" + " years ago"
-                months > 0 -> "$months" + " months ago"
-                weeks > 0 -> "$weeks" + " weeks ago"
-                days > 0 -> "$days" + " days ago"
-                hours > 0 -> "$hours" + " hours ago"
-                minutes > 0 -> "$minutes" + " minutes ago"
-                else -> "$seconds" + " seconds ago"
-            }
-
-            holder.binding.createdAt.text = formattedDate
-        }
+//        item.createdAt?.let { timestamp ->
+//            val now = Date()
+//            val date = timestamp.toDate()
+//            val diff = now.time - date.time
+//
+//            val seconds = diff / 1000
+//            val minutes = seconds / 60
+//            val hours = minutes / 60
+//            val days = hours / 24
+//            val weeks = days / 7
+//            val months = days / 30
+//            val years = days / 365
+//
+//            val formattedDate = when {
+//                years > 0 -> "$years" + " years ago"
+//                months > 0 -> "$months" + " months ago"
+//                weeks > 0 -> "$weeks" + " weeks ago"
+//                days > 0 -> "$days" + " days ago"
+//                hours > 0 -> "$hours" + " hours ago"
+//                minutes > 0 -> "$minutes" + " minutes ago"
+//                else -> "$seconds" + " seconds ago"
+//            }
+//
+//            holder.binding.createdAt.text = formattedDate
+//        }
 
         holder.binding.isDisability.visibility = if (item.isDisability == true) View.VISIBLE else View.GONE
         holder.binding.isBad.visibility = if (item.isBad == true) View.VISIBLE else View.GONE

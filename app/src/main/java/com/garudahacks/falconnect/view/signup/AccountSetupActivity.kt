@@ -16,6 +16,7 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.View
 import android.view.WindowInsetsController
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
@@ -28,6 +29,8 @@ import com.garudahacks.falconnect.databinding.ActivityAccountSetupBinding
 import com.garudahacks.falconnect.model.User
 import com.garudahacks.falconnect.view.BaseActivity
 import com.garudahacks.falconnect.view.login.LoginActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
@@ -48,7 +51,14 @@ class AccountSetupActivity : BaseActivity() {
         setNavigationBarColor()
 
         val identification = intent.getStringExtra("identification").toString()
+        val policeData = intent.getBooleanExtra("police_data", false)
         setStyledSubheading(identification)
+
+        if (policeData) {
+            showBottomSheet()
+            getUserDataFromIdentification(identification)
+        }
+
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.accountSetup) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -79,10 +89,40 @@ class AccountSetupActivity : BaseActivity() {
         binding.etPasswordConfirmation.addTextChangedListener(textWatcher)
         updateRegisterButtonState()
 
-        // Tambahkan click listener untuk DatePicker
         binding.etDate.setOnClickListener {
             showDatePickerDialog(binding.etDate)
         }
+    }
+
+    private fun showBottomSheet() {
+        val bottomSheetView = layoutInflater.inflate(R.layout.item_bottom_sheet_second_chance, null)
+        val bottomSheetDialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
+        bottomSheetDialog.setContentView(bottomSheetView)
+        bottomSheetDialog.show()
+
+        val btnOkay = bottomSheetView.findViewById<Button>(R.id.btn_okay)
+        btnOkay.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+    }
+
+    private fun getUserDataFromIdentification(identification: String) {
+        db.collection("police_data")
+            .whereEqualTo("identification", identification)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val fullname = document.getString("fullname")
+                    val date = document.getTimestamp("date")
+
+                    binding.etFullname.setText(fullname)
+                    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    binding.etDate.setText(dateFormat.format(date?.toDate()))
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Failed to fetch data: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun showDatePickerDialog(etDate: EditText) {

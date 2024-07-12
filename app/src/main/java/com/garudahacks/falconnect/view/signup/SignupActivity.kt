@@ -8,6 +8,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.WindowInsetsController
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -42,7 +43,9 @@ class SignupActivity : BaseActivity() {
         }
 
         binding.btnSignup.setOnClickListener {
-            if (isRequired()) checkIdentification()
+            if (isRequired()) {
+                checkIdentification()
+            }
         }
 
         binding.btnLogin.setOnClickListener {
@@ -80,16 +83,38 @@ class SignupActivity : BaseActivity() {
         progress(true)
         val identification = binding.etIdentification.text.toString()
         db.collection("user")
-            .whereEqualTo("identification", binding.etIdentification.text.toString())
+            .whereEqualTo("identification", identification)
             .get()
             .addOnSuccessListener { result ->
                 progress(false)
                 if (result.isEmpty) {
-                    val intent = Intent(this, AccountSetupActivity::class.java)
-                    intent.putExtra("identification", identification)
-                    startActivity(intent)
+                    checkPoliceData(identification)
+                } else {
+                    binding.alertSignup.visibility = View.VISIBLE
                 }
-                else binding.alertSignup.visibility = View.VISIBLE
+            }
+    }
+
+    private fun checkPoliceData(identification: String) {
+        progress(true)
+        db.collection("police_data")
+            .whereEqualTo("identification", identification)
+            .get()
+            .addOnSuccessListener { result ->
+                progress(false)
+                val intent = Intent(this, AccountSetupActivity::class.java)
+                intent.putExtra("identification", identification)
+                if (result.isEmpty) {
+                    intent.putExtra("police_data", false)
+                }
+                else {
+                    intent.putExtra("police_data", true)
+                }
+                startActivity(intent)
+            }
+            .addOnFailureListener {
+                progress(false)
+                Toast.makeText(this, "Failed to check police data", Toast.LENGTH_SHORT).show()
             }
     }
 

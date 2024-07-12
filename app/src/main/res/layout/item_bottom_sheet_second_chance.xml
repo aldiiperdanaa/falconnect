@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/background_bottom_sheet">
+
+        <View
+            android:id="@+id/rectangle_4"
+            android:layout_width="48dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_bottom_sheet"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/hello_fullname"
+            style="@style/Heading4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello $fullname"
+            android:textColor="@color/textPrimary"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="2dp"/>
+
+        <TextView
+            android:id="@+id/deleteDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Based on police data, you have a history of living a bad life. You can see your report here"
+            style="@style/TextBase_Regular"
+            android:layout_marginEnd="112dp"
+            android:textColor="@color/textSecondary"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:background="@color/backgroundSecondary"
+        app:layout_constraintTop_toBottomOf="@+id/linear_layout">
+
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_rounded"
+            android:backgroundTint="@color/negative_color"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextBase_Medium"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="16dp"
+            android:text="But everyone can change, right?\nWe believe that too. That's\nwhy we also work with\ncompanies that can give\nyou a second-chance"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="I hope this will be your turning point! Keep up the good fight yaaa"
+        style="@style/TextBase_Regular"
+        android:paddingEnd="184dp"
+        android:textColor="@color/textSecondary"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:background="@color/backgroundSecondary"
+        app:layout_constraintTop_toBottomOf="@id/linear_layout2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@color/backgroundSecondary"
+        app:layout_constraintTop_toBottomOf="@id/text_view">
+
+        <android.widget.Button
+            android:id="@+id/btn_okay"
+            style="@style/TextBase_SemiBold"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_rounded"
+            android:backgroundTint="@color/negative_color"
+            android:textColor="@color/backgroundSecondary"
+            android:outlineProvider="none"
+            android:textAllCaps="false"
+            android:letterSpacing="0"
+            android:text="Okay, I got it!" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_pdf"
+        android:layout_marginEnd="-28dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/text_view"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -97,7 +97,7 @@
                         style="@style/InputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:hint="National Identification Number"
                         android:textColorHint="@color/textSecondary"
                         android:drawableStart="@drawable/ic_identification"
