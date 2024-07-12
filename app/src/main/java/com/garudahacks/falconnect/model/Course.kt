@@ -8,6 +8,6 @@ data class Course(
     var imageCourse: String = "",
     var instructor: String = "",
     var job: String = "",
-    var price: Int = 0,
+    var price: String = "",
     var rating: Int = 0,
 )

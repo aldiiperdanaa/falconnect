@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import com.garudahacks.falconnect.R
 import com.garudahacks.falconnect.databinding.FragmentProfileBinding
 import com.garudahacks.falconnect.local.preference.PreferenceManager
@@ -24,6 +26,14 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.primary500)
+        activity?.window?.let { window ->
+            ViewCompat.getWindowInsetsController(window.decorView)?.let { controller ->
+                controller.isAppearanceLightStatusBars = false
+            }
+        }
+
         return binding.root
     }
 

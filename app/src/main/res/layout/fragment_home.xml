@@ -87,13 +87,53 @@
                 android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@id/img_hero_home"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_course"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                android:layout_marginTop="6dp"
+                tools:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/adapter_home_course"
+                app:layout_constraintTop_toBottomOf="@+id/recommendation"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="30dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_course">
+
+                <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                    android:id="@+id/carousel"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    tools:background="@color/primary400"
+                    app:showTopShadow="false"
+                    app:showBottomShadow="false"
+                    app:showCaption="false"
+                    app:showIndicator="true"
+                    app:imagePlaceholder="@drawable/img_placeholder"
+                    app:showNavigationButtons="false"
+                    app:autoPlay="true"
+                    app:autoPlayDelay="3000"
+                    app:infiniteCarousel="true"
+                    app:touchToPause="true"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
+
+            </androidx.cardview.widget.CardView>
+
             <LinearLayout
                 android:id="@+id/popular_news"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/recommendation">
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/card_view">
 
                 <TextView
                     style="@style/Heading5"
@@ -119,10 +159,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="visible"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="6dp"
+                tools:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/adapter_home_news"
-                android:paddingBottom="216dp"
+                android:paddingBottom="136dp"
                 app:layout_constraintTop_toBottomOf="@+id/popular_news"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

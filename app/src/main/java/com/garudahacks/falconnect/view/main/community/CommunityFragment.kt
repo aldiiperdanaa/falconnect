@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.core.widget.addTextChangedListener
 import com.garudahacks.falconnect.R
 import com.garudahacks.falconnect.databinding.FragmentCommunityBinding
@@ -63,6 +64,13 @@ class CommunityFragment : Fragment(), CommunityAdapter.AdapterListener {
 
         binding.btnShare.setOnClickListener {
             Toast.makeText(requireContext(), "Sorry for not being able to post at this time", Toast.LENGTH_SHORT).show()
+        }
+
+        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.backgroundPrimary)
+        activity?.window?.let { window ->
+            ViewCompat.getWindowInsetsController(window.decorView)?.let { controller ->
+                controller.isAppearanceLightStatusBars = true
+            }
         }
 
         return binding.root

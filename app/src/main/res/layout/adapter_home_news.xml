@@ -23,7 +23,7 @@
         <ImageView
             android:id="@+id/photo_url"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="142dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/img_placeholder"/>

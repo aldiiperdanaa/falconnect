@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.core.widget.addTextChangedListener
 import com.garudahacks.falconnect.R
 import com.garudahacks.falconnect.databinding.FragmentCommunityBinding
@@ -37,6 +39,13 @@ class JobsFragment : Fragment(), JobsAdapter.AdapterListener {
         binding.rvJobs.adapter = adapter
 
         getJobs()
+
+        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.primary500)
+        activity?.window?.let { window ->
+            ViewCompat.getWindowInsetsController(window.decorView)?.let { controller ->
+                controller.isAppearanceLightStatusBars = false
+            }
+        }
 
         return binding.root
     }
