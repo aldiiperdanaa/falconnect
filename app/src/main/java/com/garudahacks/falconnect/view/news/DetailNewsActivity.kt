@@ -2,8 +2,10 @@ package com.garudahacks.falconnect.view.news
 
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.WindowInsetsController
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -29,14 +31,36 @@ class DetailNewsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        setNavigationBarColor()
+        setStatusBarTransparent()
+
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         window.statusBarColor = android.graphics.Color.TRANSPARENT
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
             insets
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.decorView.windowInsetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
+
         binding.scrollView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
-            val backgroundOpacity = Color.parseColor("#1A000000")
+            if (scrollY > 0) {
+                setStatusBarWhite()
+            } else {
+                setStatusBarTransparent()
+            }
+        }
+
+        binding.scrollView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
+            val backgroundOpacity = Color.parseColor("#FFFFFFFF")
             if (scrollY > 0) {
                 binding.statusBar.setBackgroundColor(resources.getColor(R.color.backgroundSecondary))
                 binding.navbar.setBackgroundColor(resources.getColor(R.color.backgroundSecondary))
@@ -105,5 +129,48 @@ class DetailNewsActivity : BaseActivity() {
                     .into(binding.sourceLogo)
             }
             .addOnFailureListener { exception -> }
+    }
+
+    private fun setNavigationBarColor() {
+        val color = ContextCompat.getColor(this, R.color.backgroundSecondary)
+        window.navigationBarColor = color
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.decorView.windowInsetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or
+                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        }
+    }
+
+    private fun setStatusBarWhite() {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.backgroundSecondary)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.decorView.windowInsetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
+    }
+
+    private fun setStatusBarTransparent() {
+        window.statusBarColor = android.graphics.Color.TRANSPARENT
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.decorView.windowInsetsController?.setSystemBarsAppearance(
+                0,
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
     }
 }

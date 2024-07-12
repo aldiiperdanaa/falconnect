@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -164,9 +165,6 @@ class HomeFragment : Fragment(),
     }
 
     override fun onClick(course: Course) {
-        val intent = Intent(requireContext(), ShareActivity::class.java).apply {
-            putExtra("id", course.id)
-        }
-        startActivity(intent)
+        Toast.makeText(requireContext(), "Detail course not yet available", Toast.LENGTH_SHORT).show()
     }
 }

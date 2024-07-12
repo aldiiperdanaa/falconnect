@@ -12,7 +12,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.widget.addTextChangedListener
 import com.garudahacks.falconnect.R
 import com.garudahacks.falconnect.databinding.FragmentCommunityBinding
+import com.garudahacks.falconnect.local.preference.PreferenceManager
 import com.garudahacks.falconnect.model.Community
+import com.garudahacks.falconnect.util.PrefUtil
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -22,6 +24,7 @@ class CommunityFragment : Fragment(), CommunityAdapter.AdapterListener {
     private lateinit var binding: FragmentCommunityBinding
     private lateinit var adapter: CommunityAdapter
     private val db by lazy { Firebase.firestore }
+    private val pref by lazy { PreferenceManager(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,6 +76,10 @@ class CommunityFragment : Fragment(), CommunityAdapter.AdapterListener {
             }
         }
 
+        val fullname = pref.getString(PrefUtil.pref_fullname)
+        val initials = getInitials(fullname)
+        binding.initial.text = initials
+
         return binding.root
     }
 
@@ -121,6 +128,24 @@ class CommunityFragment : Fragment(), CommunityAdapter.AdapterListener {
             binding.btnShare.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.primary500)
             binding.btnShare.isEnabled = true
         }
+    }
+
+    private fun getInitials(fullname: String?): String {
+        if (fullname.isNullOrEmpty()) return ""
+
+        val names = fullname.trim().split("\\s+".toRegex()).toTypedArray()
+        val builder = StringBuilder()
+
+        for (name in names) {
+            if (builder.length >= 2) {
+                break
+            }
+            if (name.isNotEmpty()) {
+                builder.append(name[0].toUpperCase())
+            }
+        }
+
+        return builder.toString()
     }
 
 }

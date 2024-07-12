@@ -6,6 +6,7 @@ import android.view.View
 import android.view.WindowInsetsController
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -13,11 +14,14 @@ import androidx.core.widget.addTextChangedListener
 import com.garudahacks.falconnect.R
 import com.garudahacks.falconnect.databinding.ActivityShareBinding
 import com.garudahacks.falconnect.databinding.ActivitySignupBinding
+import com.garudahacks.falconnect.local.preference.PreferenceManager
+import com.garudahacks.falconnect.util.PrefUtil
 import com.garudahacks.falconnect.view.BaseActivity
 
 class ShareActivity : BaseActivity() {
 
     private lateinit var binding: ActivityShareBinding
+    private val pref by lazy { PreferenceManager(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,12 @@ class ShareActivity : BaseActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val fullname = pref.getString(PrefUtil.pref_fullname)
+        val initials = getInitials(fullname)
+        binding.fullname.text = fullname
+        binding.initial.text = initials
+
 
         updateShareButtonState(binding.etPost.text.toString().isNotEmpty())
 
@@ -90,4 +100,23 @@ class ShareActivity : BaseActivity() {
                     View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
         }
     }
+
+    private fun getInitials(fullname: String?): String {
+        if (fullname.isNullOrEmpty()) return ""
+
+        val names = fullname.trim().split("\\s+".toRegex()).toTypedArray()
+        val builder = StringBuilder()
+
+        for (name in names) {
+            if (builder.length >= 2) {
+                break
+            }
+            if (name.isNotEmpty()) {
+                builder.append(name[0].toUpperCase())
+            }
+        }
+
+        return builder.toString()
+    }
+
 }

@@ -17,15 +17,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/photo_img_url"
+    <TextView
+        android:id="@+id/initial"
+        style="@style/TextLarge_Bold"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:background="@drawable/bg_circle"
+        android:backgroundTint="@color/textTertiary"
+        android:gravity="center"
+        android:text="Aa"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/img_avatar_sample"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/fullname"
@@ -34,8 +39,8 @@
         android:layout_height="wrap_content"
         android:text="Fullname"
         android:layout_marginStart="12dp"
-        app:layout_constraintStart_toEndOf="@+id/photo_img_url"
-        app:layout_constraintTop_toTopOf="@+id/photo_img_url" />
+        app:layout_constraintStart_toEndOf="@+id/initial"
+        app:layout_constraintTop_toTopOf="@+id/initial" />
 
     <View
         android:id="@+id/circle_divider"
@@ -57,7 +62,7 @@
         android:textColor="@color/textSecondary"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/circle_divider"
-        app:layout_constraintTop_toTopOf="@+id/photo_img_url" />
+        app:layout_constraintTop_toTopOf="@+id/initial" />
 
     <LinearLayout
         android:id="@+id/container_status"
@@ -67,7 +72,7 @@
         android:layout_marginStart="76dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintStart_toEndOf="@+id/photo_img_url"
+        app:layout_constraintStart_toEndOf="@+id/initial"
         app:layout_constraintTop_toBottomOf="@+id/fullname">
 
         <androidx.cardview.widget.CardView
@@ -110,7 +115,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@+id/container_status"
-        app:layout_constraintStart_toEndOf="@+id/photo_img_url"
+        app:layout_constraintStart_toEndOf="@+id/initial"
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView

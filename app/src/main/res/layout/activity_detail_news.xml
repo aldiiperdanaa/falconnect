@@ -55,7 +55,9 @@
                         android:id="@+id/source_logo"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
-                        android:src="@drawable/img_avatar_sample" />
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_placeholder" />
 
                     <TextView
                         style="@style/TextBase_Medium"

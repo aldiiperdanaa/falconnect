@@ -1,7 +1,7 @@
 package com.garudahacks.falconnect.view.main.community
 
-import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -34,14 +34,18 @@ class CommunityAdapter(
         holder.binding.totalComment.text = item.totalComment.toString()
         holder.binding.totalBookmark.text = item.totalBookmark.toString()
 
-        Glide.with(holder.itemView.context)
-            .load(item.profileImageUrl)
-            .placeholder(R.drawable.img_placeholder)
-            .into(holder.binding.photoImgUrl)
-        Glide.with(holder.itemView.context)
-            .load(item.photoStatusUrl)
-            .placeholder(R.drawable.img_placeholder)
-            .into(holder.binding.photoUrl)
+        val fullnameInitial = getInitials(item.fullname)
+        holder.binding.initial.text = fullnameInitial
+
+        if (item.photoStatusUrl.isNullOrEmpty()) {
+            holder.binding.containerImgNews.visibility = View.GONE
+        } else {
+            holder.binding.containerImgNews.visibility = View.VISIBLE
+            Glide.with(holder.itemView.context)
+                .load(item.photoStatusUrl)
+                .placeholder(R.drawable.img_placeholder)
+                .into(holder.binding.photoUrl)
+        }
 
         item.createdAt?.let { timestamp ->
             val now = Date()
@@ -70,10 +74,9 @@ class CommunityAdapter(
         }
 
         holder.binding.container.setOnClickListener {
-            listener?.onClick(item)
+            listener.onClick(item)
         }
     }
-
 
     class ViewHolder(val binding: AdapterCommunityBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -84,5 +87,13 @@ class CommunityAdapter(
 
     interface AdapterListener {
         fun onClick(communities: Community)
+    }
+
+    private fun getInitials(name: String): String {
+        return name.split(" ")
+            .take(2)
+            .mapNotNull { it.firstOrNull()?.toString() }
+            .joinToString("")
+            .uppercase()
     }
 }

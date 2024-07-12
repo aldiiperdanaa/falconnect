@@ -81,13 +81,18 @@
                 android:paddingHorizontal="16dp"
                 android:background="@color/backgroundSecondary">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/post_profile_image"
+                <TextView
+                    android:id="@+id/initial"
+                    style="@style/TextLarge_Bold"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/img_avatar_sample"
+                    android:background="@drawable/bg_circle"
+                    android:backgroundTint="@color/primary700"
+                    android:gravity="center"
+                    android:text="Aa"
+                    android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/fullname"
@@ -96,8 +101,8 @@
                     android:layout_height="wrap_content"
                     android:text="Fullname"
                     android:layout_marginStart="12dp"
-                    app:layout_constraintStart_toEndOf="@+id/post_profile_image"
-                    app:layout_constraintTop_toTopOf="@+id/post_profile_image" />
+                    app:layout_constraintStart_toEndOf="@+id/initial"
+                    app:layout_constraintTop_toTopOf="@+id/initial" />
 
                 <EditText
                     android:id="@+id/et_post"
@@ -110,7 +115,7 @@
                     android:layout_marginBottom="50dp"
                     android:background="@android:color/transparent"
                     android:hint="Write your post here..."
-                    app:layout_constraintStart_toEndOf="@+id/post_profile_image"
+                    app:layout_constraintStart_toEndOf="@+id/initial"
                     app:layout_constraintTop_toBottomOf="@+id/fullname"
                     app:layout_constraintBottom_toTopOf="@+id/btn_category"/>
 
